@@ -3,6 +3,7 @@
 #   Dependencies are pulled into the play and executed in order
 #   of appearance.
 #dependencies: ['java']
+dependencies: []
 
 
 # https://galaxy.ansibleworks.com

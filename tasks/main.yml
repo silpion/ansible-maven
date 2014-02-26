@@ -54,7 +54,7 @@
   command: tar --strip-components=1
       -xzf {{ ansible_data_path }}/{{ maven_redis_filename }}
       -C {{ maven_install_dir }}/{{ maven_version }}
-    creates={{ maven_install_dir }}/bin/mvn
+    creates={{ maven_install_dir }}/{{ maven_version }}/bin/mvn
 
 
 - name: Install Maven binary
