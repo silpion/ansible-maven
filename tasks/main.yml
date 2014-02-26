@@ -53,7 +53,7 @@
   tags: maven
   command: tar --strip-components=1
       -xzf {{ ansible_data_path }}/{{ maven_redis_filename }}
-      -C {{ maven_install_dir }}
+      -C {{ maven_install_dir }}/{{ maven_version }}
     creates={{ maven_install_dir }}/bin/mvn
 
 
@@ -61,5 +61,6 @@
   tags: maven
   file:
     state=link
-    src={{ maven_install_dir }}/bin/mvn
+    force=true
+    src={{ maven_install_dir }}/{{ maven_version }}/bin/mvn
     dest={{ maven_bin_path }}/mvn
