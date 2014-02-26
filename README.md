@@ -3,6 +3,11 @@
 Install Maven in latest version from upstream.
 
 
+# ToDos
+
+- Fix meta/main.yml dependencies list.
+
+
 # Role variables
 
 Configure the mirror to download Maven.
