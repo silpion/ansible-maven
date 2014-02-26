@@ -1,0 +1,65 @@
+---
+# Main list of tasks to be executed.
+#
+#   Fail the play if it runs on an unsupported platform.
+- name: Fail on unsupported platform
+  tags: maven
+  fail: msg="Operating system not supported {{ ansible_os_family }}"
+  when: ansible_os_family not in ['Archlinux', 'Debian', 'RedHat', 'Suse']
+
+
+- name: Download Maven (local)
+  tags: maven
+  local_action: get_url
+    dest={{ ansible_data_path }}/{{ maven_redis_filename }}
+    url={{ maven_mirror }}/{{ maven_version }}/binaries/{{ maven_redis_filename }}
+    owner=root
+    group=root
+    mode=0644
+    sha256sum={{ maven_redis_sha256sum }}
+
+
+- name: Install Maven upload directory
+  tags: maven
+  file:
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+    dest={{ ansible_data_path }}
+
+
+- name: Copy Maven redis package to the node
+  tags: maven
+  copy:
+    src={{ ansible_data_path }}/{{ maven_redis_filename }}
+    owner=root
+    group=root
+    mode=0644
+    dest={{ ansible_data_path }}/{{ maven_redis_filename }}
+
+
+- name: Install Maven installation directory
+  tags: maven
+  file:
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+    dest={{ maven_install_dir }}/{{ maven_version }}
+
+
+- name: Install Maven
+  tags: maven
+  command: tar --strip-components=1
+      -xzf {{ ansible_data_path }}/{{ maven_redis_filename }}
+      -C {{ maven_install_dir }}
+    creates={{ maven_install_dir }}/bin/mvn
+
+
+- name: Install Maven binary
+  tags: maven
+  file:
+    state=link
+    src={{ maven_install_dir }}/bin/mvn
+    dest={{ maven_bin_path }}/mvn
