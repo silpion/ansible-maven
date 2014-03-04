@@ -4,8 +4,18 @@
 #   Fail the play if it runs on an unsupported platform.
 - name: Fail on unsupported platform
   tags: maven
-  fail: msg="Operating system not supported {{ ansible_os_family }}"
+  fail: msg="Platform not supported {{ ansible_os_family }}"
   when: ansible_os_family not in ['Archlinux', 'Debian', 'RedHat', 'Suse']
+
+
+- name: Install Maven download directory (local)
+  tags: maven
+  local_action: file
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+    dest={{ ansible_data_path }}
 
 
 - name: Download Maven (local)
@@ -19,26 +29,6 @@
     sha256sum={{ maven_redis_sha256sum }}
 
 
-- name: Install Maven upload directory
-  tags: maven
-  file:
-    state=directory
-    owner=root
-    group=root
-    mode=0755
-    dest={{ ansible_data_path }}
-
-
-- name: Copy Maven redis package to the node
-  tags: maven
-  copy:
-    src={{ ansible_data_path }}/{{ maven_redis_filename }}
-    owner=root
-    group=root
-    mode=0644
-    dest={{ ansible_data_path }}/{{ maven_redis_filename }}
-
-
 - name: Install Maven installation directory
   tags: maven
   file:
@@ -46,15 +36,24 @@
     owner=root
     group=root
     mode=0755
-    dest={{ maven_install_dir }}/{{ maven_version }}
+    dest={{ maven_install_dir }}
 
 
 - name: Install Maven
   tags: maven
-  command: tar --strip-components=1
-      -xzf {{ ansible_data_path }}/{{ maven_redis_filename }}
-      -C {{ maven_install_dir }}/{{ maven_version }}
-    creates={{ maven_install_dir }}/{{ maven_version }}/bin/mvn
+  unarchive:
+    src={{ ansible_data_path }}/{{ maven_redis_filename }}
+    dest={{ maven_install_dir }}
+
+
+- name: Install Maven bin directory
+  tags: maven
+  file:
+    state=directory
+    owner=root
+    group=root
+    mode=0755
+    dest={{ maven_bin_path }}
 
 
 - name: Install Maven binary
@@ -62,5 +61,5 @@
   file:
     state=link
     force=true
-    src={{ maven_install_dir }}/{{ maven_version }}/bin/mvn
+    src={{ maven_install_dir }}/apache-maven-{{ maven_version }}/bin/mvn
     dest={{ maven_bin_path }}/mvn
