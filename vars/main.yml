@@ -1,6 +1,6 @@
 ---
 # Version of our role.
-maven_role_version: '0.1.0'
+maven_role_version: '0.2.0'
 
 # path for ansible to store downloaded or templated data
 ansible_data_path: '/usr/local/src/ansible/data'
