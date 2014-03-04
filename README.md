@@ -3,28 +3,40 @@
 Install Maven in latest version from upstream.
 
 
-# ToDos
-
-- Fix meta/main.yml dependencies list.
-
-
 # Role variables
 
+## maven_version_major
+
+Default: 3
+
+## maven_version_minor
+
+Default: 2
+
+## maven_version_patch
+
+Default: 1
+
+## maven_mirror
+
 Configure the mirror to download Maven.
-- maven_mirror
+Default: http://ftp.fau.de/apache/maven
+
+## maven_redis_shad256sum
+
+SHA256 sum for the downloaded Maven redistributable package.
+Default: cdee2fd50b2b4e34e2d67d01ab2018b051542ee759c07354dd7aed6f4f71675c
 
 
-Configure the Maven version to install [3.2.1].
-- maven_version
+## maven_bin_path
 
-
-SHA256 sum for the downloaded Maven redis package.
-- maven_redis_sha256sum
+Directory where to symlink the mvn binary to.
+Default: /usr/local/bin
 
 
 # Dependencies
 
-- java
+None.
 
 
 # License
