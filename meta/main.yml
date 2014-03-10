@@ -14,7 +14,7 @@ galaxy_info:
   description: Manage Maven installation
   company: http://silpion.de
   license: Apache 2
-  min_ansible_version: 1.4
+  min_ansible_version: 1.5
  
   #
   # Below are all platforms currently available. Just uncomment
@@ -84,10 +84,10 @@ galaxy_info:
     - 11SP1
     - 11SP2
     - 11SP3
-  # - name: GenericLinux
-  #   versions:
-  #   - all
-  #   - any
+  - name: GenericLinux
+    versions:
+    - all
+    - any
   - name: Debian
     versions:
     - all
