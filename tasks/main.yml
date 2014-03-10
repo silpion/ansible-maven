@@ -2,10 +2,11 @@
 # Main list of tasks to be executed.
 #
 #   Fail the play if it runs on an unsupported platform.
-- name: Fail on unsupported platform
+- name: Assert platform is supported
   tags: maven
-  fail: msg="Platform not supported {{ ansible_os_family }}"
-  when: ansible_os_family not in ['Archlinux', 'Debian', 'RedHat', 'Suse']
+  assert:
+    that:
+      - ansible_os_family in ['Archlinux', 'Debian', 'RedHat', 'Suse']
 
 
 - name: Install Maven download directory (local)
