@@ -13,8 +13,8 @@
   tags: maven
   local_action: file
     state=directory
-    owner=root
-    group=root
+    owner=0
+    group=0
     mode=0755
     dest={{ ansible_data_path }}
 
@@ -24,8 +24,8 @@
   local_action: get_url
     dest={{ ansible_data_path }}/{{ maven_redis_filename }}
     url={{ maven_mirror }}/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/{{ maven_redis_filename }}
-    owner=root
-    group=root
+    owner=0
+    group=0
     mode=0644
     sha256sum={{ maven_redis_sha256sum }}
 
@@ -34,8 +34,8 @@
   tags: maven
   file:
     state=directory
-    owner=root
-    group=root
+    owner=0
+    group=0
     mode=0755
     dest={{ maven_install_dir }}
 
@@ -51,8 +51,8 @@
   tags: maven
   file:
     state=directory
-    owner=root
-    group=root
+    owner=0
+    group=0
     mode=0755
     dest={{ maven_bin_path }}
 
