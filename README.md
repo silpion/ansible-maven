@@ -5,22 +5,14 @@ Install Maven in latest version from upstream.
 
 # Role variables
 
-## maven_version_major
+## maven_version
 
-Default: 3
-
-## maven_version_minor
-
-Default: 2
-
-## maven_version_patch
-
-Default: 1
+Default: 3.2.1
 
 ## maven_mirror
 
 Configure the mirror to download Maven.
-Default: http://ftp.fau.de/apache/maven
+Default: http://archive.apache.org/dist/maven/binaries/
 
 ## maven_redis_shad256sum
 
