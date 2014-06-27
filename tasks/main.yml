@@ -23,7 +23,7 @@
   tags: maven
   local_action: get_url
     dest={{ ansible_data_path }}/{{ maven_redis_filename }}
-    url={{ maven_mirror }}/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/{{ maven_redis_filename }}
+    url={{ maven_mirror }}/{{ maven_redis_filename }}
     owner=0
     group=0
     mode=0644
