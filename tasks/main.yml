@@ -8,7 +8,6 @@
     that:
       - ansible_os_family in maven_supported_platforms
 
-
 - name: Load version vars
   tags: maven
   with_first_found:
