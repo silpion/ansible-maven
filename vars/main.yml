@@ -3,7 +3,7 @@
 maven_role_version: '0.3.2'
 
 # path for ansible to store downloaded or templated data
-ansible_data_path: '/usr/local/src/ansible/data'
+local_ansible_data_path: '/usr/local/src/ansible/data'
 
 # base installation directory for any Maven distribution
 maven_install_dir: '/opt/maven'
