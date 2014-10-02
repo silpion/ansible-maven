@@ -9,24 +9,24 @@
       - ansible_os_family in ['Archlinux', 'Debian', 'RedHat', 'Suse']
 
 
-- name: Install local ansible data path directory (local)
+- include: local.yml
   tags: maven
-  local_action: file
+
+
+- name: Install remote ansible data path directory
+  tags: maven
+  file:
     state=directory
+    dest={{ remote_ansible_data_path }}
+
+- name: Copy maven distribution
+  tags: maven
+  copy:
+    src={{ local_ansible_data_path }}/{{ maven_redis_filename }}
+    dest={{ remote_ansible_data_path }}/{{ maven_redis_filename }}
     owner=0
     group=0
-    mode=2777
-    dest={{ local_ansible_data_path }}
-
-
-- name: Download Maven (local)
-  tags: maven
-  sudo: no
-  local_action: get_url
-    dest={{ local_ansible_data_path }}/{{ maven_redis_filename }}
-    url={{ maven_mirror }}/{{ maven_redis_filename }}
     mode=0644
-    sha256sum={{ maven_redis_sha256sum }}
 
 
 - name: Install Maven installation directory
@@ -44,6 +44,8 @@
   unarchive:
     src={{ local_ansible_data_path }}/{{ maven_redis_filename }}
     dest={{ maven_install_dir }}
+    copy=false
+    creates={{ maven_install_dir }}/apache-maven-{{ maven_version }}
 
 
 - name: Install Maven bin directory
