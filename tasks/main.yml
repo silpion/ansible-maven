@@ -42,7 +42,7 @@
 - name: Install Maven
   tags: maven
   unarchive:
-    src={{ local_ansible_data_path }}/{{ maven_redis_filename }}
+    src={{ remote_ansible_data_path }}/{{ maven_redis_filename }}
     dest={{ maven_install_dir }}
     copy=false
     creates={{ maven_install_dir }}/apache-maven-{{ maven_version }}
