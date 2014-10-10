@@ -9,6 +9,14 @@
       - ansible_os_family in ['Archlinux', 'Debian', 'RedHat', 'Suse']
 
 
+- name: Load version vars
+  tags: maven
+  with_first_found:
+    - ../vars/versions/{{ maven_version }}.yml
+    - ../vars/versions/default.yml
+  include_vars: "{{ item }}"
+
+
 - include: local.yml
   tags: maven
 
