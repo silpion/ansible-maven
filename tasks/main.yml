@@ -73,3 +73,27 @@
     force=true
     src={{ maven_install_dir }}/apache-maven-{{ maven_version }}/bin/mvn
     dest={{ maven_bin_path }}/mvn
+
+
+- name: Install Ansible facts.d directory
+  tags: maven
+  file:
+    state=directory
+    dest=/etc/ansible/facts.d
+    owner=0
+    group=0
+    mode=0755
+
+- name: Install Maven facts
+  tags: maven
+  template:
+    src=facts.j2
+    dest=/etc/ansible/facts.d/maven.fact
+    owner=0
+    group=0
+    mode=0644
+
+- name: Re-read facts
+  tags: maven
+  setup:
+    filter=ansible_local
