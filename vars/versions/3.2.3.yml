@@ -1,0 +1,6 @@
+---
+# Maven 3.2.3 is not accessable on archive mirror
+maven_mirror: http://ftp.halifax.rwth-aachen.de/apache/maven/maven-3/3.2.3/binaries
+
+# SHA256 sum for the redistributable package
+maven_redis_sha256sum: bf3f04aadee3a67158aebdfb0b4cb022063329d459d10fd6b4b02223e10aa8ed
