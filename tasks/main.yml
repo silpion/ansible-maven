@@ -20,8 +20,7 @@
   tags: maven
   assert:
     that:
-      - maven_redis_sha256sum != None
-      - maven_redis_sha256sum != ""
+      - maven_redis_sha256sum not in (None, "")
 
 
 - include: local.yml
