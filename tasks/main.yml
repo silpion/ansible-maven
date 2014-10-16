@@ -16,6 +16,12 @@
     - ../vars/versions/default.yml
   include_vars: "{{ item }}"
 
+- name: Assert version vars
+  tags: maven
+  assert:
+    that:
+      - maven_redis_sha256sum not in (None, "")
+
 
 - include: local.yml
   tags: maven
