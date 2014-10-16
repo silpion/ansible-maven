@@ -1,3 +1,13 @@
+# 0.5.1
+
+Marc Rohlfs (1):
+      Configuration for Maven version 3.2.2
+
+Mark Kusch (3):
+      Allow to overwrite shasum for unknown maven version
+      Add assertion on usable version variables
+      One-step assertion for version vars
+
 # 0.5.0
 
 Marc Rohlfs (1):
