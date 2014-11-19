@@ -69,5 +69,4 @@ Ruby with rake and bundler available.
 
 Mark Kusch @mark.kusch silpion.de
 
-
 <!-- vim: set ts=4 sw=4 et nofen: -->
