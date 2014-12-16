@@ -1,3 +1,9 @@
+# 0.5.2
+
+Marc Rohlfs (2):
+      Fixed typo in role variables documentation.
+      Fixed Maven home path in Ansible fact.
+
 # 0.5.1
 
 Marc Rohlfs (1):
