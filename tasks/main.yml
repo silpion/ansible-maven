@@ -6,7 +6,7 @@
   tags: maven
   assert:
     that:
-      - ansible_os_family in ['Archlinux', 'Debian', 'RedHat', 'Suse']
+      - ansible_os_family in ['Archlinux', 'Debian', 'RedHat', 'Suse', 'Linuxmint']
 
 
 - name: Load version vars
