@@ -1,3 +1,9 @@
+# 0.5.3
+
+Mark Kusch (2):
+      Update integration testing to work with Serverspec 2.N
+      [github#3] Add support for Linuxmint
+
 # 0.5.2
 
 Marc Rohlfs (2):
