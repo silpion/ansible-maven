@@ -15,7 +15,7 @@ galaxy_info:
   company: http://silpion.de
   license: Apache 2
   min_ansible_version: 1.5
- 
+
   #
   # Below are all platforms currently available. Just uncomment
   # the ones that apply to your role. If you don't see your
@@ -95,6 +95,9 @@ galaxy_info:
     - lenny
     - squeeze
     - wheezy
+  - name: Linuxmint
+    versions:
+    - all
 
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
