@@ -1,3 +1,9 @@
+# 0.5.4
+
+Mark Kusch (2):
+      Do not run test playbook with sudo: yes
+      Ensure tasks define sudo: yes when requiring superuser privileges
+
 # 0.5.3
 
 Mark Kusch (2):
