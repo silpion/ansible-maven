@@ -29,12 +29,14 @@
 
 - name: Install remote ansible data path directory
   tags: maven
+  sudo: yes
   file:
     state=directory
     dest={{ remote_ansible_data_path }}
 
 - name: Copy maven distribution
   tags: maven
+  sudo: yes
   copy:
     src={{ local_ansible_data_path }}/{{ maven_redis_filename }}
     dest={{ remote_ansible_data_path }}/{{ maven_redis_filename }}
@@ -45,6 +47,7 @@
 
 - name: Install Maven installation directory
   tags: maven
+  sudo: yes
   file:
     state=directory
     owner=0
@@ -55,6 +58,7 @@
 
 - name: Install Maven
   tags: maven
+  sudo: yes
   unarchive:
     src={{ remote_ansible_data_path }}/{{ maven_redis_filename }}
     dest={{ maven_install_dir }}
@@ -64,6 +68,7 @@
 
 - name: Install Maven bin directory
   tags: maven
+  sudo: yes
   file:
     state=directory
     owner=0
@@ -74,6 +79,7 @@
 
 - name: Install Maven binary
   tags: maven
+  sudo: yes
   file:
     state=link
     force=true
@@ -83,6 +89,7 @@
 
 - name: Install Ansible facts.d directory
   tags: maven
+  sudo: yes
   file:
     state=directory
     dest=/etc/ansible/facts.d
@@ -92,6 +99,7 @@
 
 - name: Install Maven facts
   tags: maven
+  sudo: yes
   template:
     src=facts.j2
     dest=/etc/ansible/facts.d/maven.fact
