@@ -5,5 +5,8 @@ maven_version: 3.2.3
 # Mirror where to dowload Maven redistributable package from
 maven_mirror: "http://archive.apache.org/dist/maven/binaries/"
 
+# Base installation directory for any Maven distribution
+maven_install_dir: /opt/maven
+
 # Use a cow in templates in favor of {{ ansible_managed }}
 maven_with_cow: true
