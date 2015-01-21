@@ -2,7 +2,7 @@
 # Maven version number
 maven_version: 3.2.5
 
-# Mirror where to dowload Maven redistributable package from - they differ between maor versions.
+# Mirror where to dowload Maven redistributable package from - they differ between major versions.
 maven_mirror: "http://archive.apache.org/dist/maven/maven-{{ maven_version|regex_replace('\\..*', '') }}/{{ maven_version }}/binaries"
 
 # Use a cow in templates in favor of {{ ansible_managed }}
