@@ -1,3 +1,13 @@
+# 0.6.0
+
+Marc Rohlfs (5):
+
+* Apply mirror URL to the new path structure on the Apache download mirror.
+* Introduced new predefined versions: 3.2.5 and 2.2.1
+* Variables that should be overwritable must be moved to defaults/main.yml.
+* Fixed typo in comment.
+* Introduced further predefined versions 3.1.1 and 3.0.5
+
 # 0.5.4
 
 Mark Kusch (2):
