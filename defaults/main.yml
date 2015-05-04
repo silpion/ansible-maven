@@ -10,6 +10,3 @@ maven_install_dir: /opt/maven
 
 # Use a cow in templates in favor of {{ ansible_managed }}
 maven_with_cow: true
-
-# mvn binary gets symlinked into {{ maven_bin_path }}
-maven_bin_path: '/usr/local/bin'
