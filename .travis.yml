@@ -9,7 +9,7 @@ before_install:
  - sudo apt-get install --assume-yes -qq python-apt python-pycurl
 install:
   # Install Ansible.
-  - pip install ansible==$ANSIBLE_VERSION
+  - sudo pip install ansible==$ANSIBLE_VERSION
 script:
  - ansible --version
  - ansible-playbook --inventory-file tests/hosts --syntax-check tests/playbook.yml
