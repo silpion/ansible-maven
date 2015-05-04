@@ -54,22 +54,6 @@
     mode=0755
     dest={{ maven_install_dir }}
 
-# Install the Maven redistributable package to the node
-#unarchive below does not work for tar.gz
-- name: Install Maven Debian package
-  action: command creates={{ maven_install_dir }}/apache-maven-{{ maven_version }} chdir={{ maven_install_dir }} tar zxvf {{ ansible_data_path }}/{{ maven_redis_filename }} --owner=root
-  register: maven_installed
-#  ignore_errors: True
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- name: Install Maven RPM package
-  action: command creates={{ maven_install_dir }}/apache-maven-{{ maven_version }} chdir={{ maven_install_dir }} rpm --force -Uvh {{ ansible_data_path }}/{{ maven_redis_filename }}
-  register: maven_installed
-#  ignore_errors: True
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-
-- debug: msg="maven_installed value is {{ maven_installed }} {{ maven_installed.skipped }} {{ maven_installed.changed }}"
-
 - name: Install Maven
   tags: maven
   sudo: yes
