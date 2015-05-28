@@ -18,7 +18,6 @@ None.
 * ``maven_mirror``: Maven mirror to download Maven from (default: ``http://archive.apache.org/dist/maven/binaries/``)
 * ``maven_install_dir``: Base installation directory for any Maven distribution (default: ``/opt/maven``)
 * ``maven_redis_sha256sum``: SHA256 sum for the downloaded Maven redistributable package (default: ``bf3f04aadee3a67158aebdfb0b4cb022063329d459d10fd6b4b02223e10aa8ed``)
-* ``maven_with_cow``: Change wether the configuration files 'Managed by ansible' warning should be said by a flaming sheep or not (bool, default: ``true``)
 
 ## Role facts
 
