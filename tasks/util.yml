@@ -1,0 +1,11 @@
+---
+- { include: ../../silpion.util/tasks/_get.yml,
+      url: "{{ maven_mirror }}/{{ maven_redis_filename }}",
+      dest: "{{ util_persistent_data_path_local }}/{{ maven_redis_filename }}",
+      sha256sum: "{{ maven_redis_sha256sum }}"
+  }
+
+- { include: ../../silpion.util/tasks/_put.yml,
+      src: "{{ util_persistent_data_path_local }}/{{ maven_redis_filename }}",
+      dest: "{{ util_persistent_data_path_remote }}/{{ maven_redis_filename }}"
+  }
