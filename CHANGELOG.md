@@ -1,3 +1,14 @@
+# 0.7.0
+
+Marc Rohlfs (1):
+
+* Introduced new predefined version 3.3.3 as default.
+
+Mark Kusch (2):
+
+* Have various tasks/variables managed with util role
+* Remove maven\_with\_cow documentation (replaced with util\_template\_use\_cow)
+
 # 0.6.0
 
 Marc Rohlfs (5):
