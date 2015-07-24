@@ -3,5 +3,3 @@
   roles:
     - { role: silpion.java }
     - { role: ansible-maven }
-
-
