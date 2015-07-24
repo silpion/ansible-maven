@@ -21,7 +21,7 @@ install:
 
 script:
     - cd tests
-    - export ANSIBLE_ROLES_PATH="./"
+    #- export ANSIBLE_ROLES_PATH="./"
 
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
     - ansible --version
