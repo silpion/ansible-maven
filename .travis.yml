@@ -23,7 +23,7 @@ script:
 
     # Add ansible.cfg to pick up roles path.
     #- export ANSIBLE_ROLES_PATH="./tests"
-    - "{ echo '[defaults]'; echo 'roles_path = ./tests/'; } >> ansible.cfg"
+    - "{ echo '[defaults]'; echo 'roles_path = ./'; } > ansible.cfg"
 
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
     - ansible --version
