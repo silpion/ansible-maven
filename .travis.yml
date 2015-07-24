@@ -12,7 +12,7 @@ install:
   - sudo pip install ansible==$ANSIBLE_VERSION
 
   # Add ansible.cfg to pick up roles path.
-  - "{ echo '[defaults]'; echo 'roles_path = ./tests'; } >> ansible.cfg"
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
   # Install dependencies.
   #- ansible-galaxy install silpion.util
@@ -20,7 +20,10 @@ install:
 
 script:
     - cd tests
-    - export ANSIBLE_ROLES_PATH="./tests"
+
+    # Add ansible.cfg to pick up roles path.
+    #- export ANSIBLE_ROLES_PATH="./tests"
+    - "{ echo '[defaults]'; echo 'roles_path = ./tests/'; } >> ansible.cfg"
 
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
     - ansible --version
