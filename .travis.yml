@@ -10,6 +10,14 @@ before_install:
 install:
   # Install Ansible.
   - sudo pip install ansible==$ANSIBLE_VERSION
+
+  # Add ansible.cfg to pick up roles path.
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+  # Install dependencies.
+  #- ansible-galaxy install silpion.util
+  - git clone https://github.com/silpion/ansible-util.git silpion.util
+
 script:
  - ansible --version
  - ansible-playbook --inventory-file tests/hosts --syntax-check tests/playbook.yml
