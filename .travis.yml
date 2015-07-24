@@ -16,7 +16,6 @@ install:
 
   # Install dependencies.
   #- ansible-galaxy install silpion.util
-  - git clone https://github.com/silpion/ansible-util.git silpion.util
   - git clone https://github.com/silpion/ansible-util.git tests/silpion.util
 
 script:
