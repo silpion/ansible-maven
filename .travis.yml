@@ -16,14 +16,10 @@ install:
 
   # Install dependencies.
   #- ansible-galaxy install silpion.util
-  - git clone https://github.com/silpion/ansible-util.git tests/silpion.util
+  - git clone https://github.com/silpion/ansible-util.git silpion.util
 
 script:
-    - cd tests
-
-    # Add ansible.cfg to pick up roles path.
-    #- export ANSIBLE_ROLES_PATH="./tests"
-    - "{ echo '[defaults]'; echo 'roles_path = ./'; } > ansible.cfg"
+    #- cd tests
 
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
     - ansible --version
