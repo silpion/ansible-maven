@@ -4,7 +4,7 @@
 #   of appearance.
 #dependencies: ['java']
 dependencies:
-  - { role: ./silpion.util }
+  - { role: silpion.util }
 
 
 # https://galaxy.ansibleworks.com
