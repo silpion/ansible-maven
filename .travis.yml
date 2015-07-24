@@ -19,6 +19,34 @@ install:
   - git clone https://github.com/silpion/ansible-util.git tests/silpion.util
 
 script:
- - ansible --version
- - ansible-playbook --inventory-file tests/hosts --syntax-check tests/playbook.yml
- - ansible-playbook --inventory-file tests/hosts --connection=local -vvvv tests/playbook.yml
+    - cd tests
+
+    - echo -e "\e[31m######AnsibleVersion#######\e[0m"
+    - ansible --version
+
+    # 1st: check syntax
+    - echo "\e[31m######***************************** SYNTAX CHECK (1) *****************************\e[0m"
+    - ansible-playbook --inventory-file hosts playbook.yml --connection=local --syntax-check
+
+    # 2nd:  Make sure we run the entire playbook
+    - echo "***************************** RUN PLAY (2) *****************************"
+    - ansible-playbook --inventory-file hosts playbook.yml --connection=local  -vvvv
+
+    # 3rd:  Make sure our playbook is idempotent
+    - echo "***************************** Idempotence test (3) *****************************"
+    - >
+      ansible-playbook --inventory-file hosts playbook.yml --connection=local -vvvv | tee ansible_output
+      | grep -q 'changed=0.*failed=0'
+      && (echo 'Idempotence test: pass' && exit 0)
+      || (echo 'Idempotence test: fail' && exit 1)
+
+after_failure:
+    - echo -e "\e[31m######IdepotanceLog#######\e[0m"
+    - sudo cat ansible_output
+    - echo -e "\e[31m######version#######\e[0m"
+    - sudo mvn --version
+    - echo -e "\e[31m######AnsibleFacts#######\e[0m"
+    - ansible -i 127.0.0.1, -m setup all -c local
+
+after_success:
+ - echo -e "\e[0;32m######Cook Success#######\e[0m"
