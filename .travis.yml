@@ -12,7 +12,7 @@ install:
   - sudo pip install ansible==$ANSIBLE_VERSION
 
   # Add ansible.cfg to pick up roles path.
-  #- "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
   # Install dependencies.
   #- ansible-galaxy install silpion.util
@@ -26,16 +26,16 @@ script:
 
     # 1st: check syntax
     - echo "\e[31m######***************************** SYNTAX CHECK (1) *****************************\e[0m"
-    - ansible-playbook --inventory-file hosts tests/playbook.yml --connection=local --syntax-check
+    - ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local --syntax-check
 
     # 2nd:  Make sure we run the entire playbook
     - echo "***************************** RUN PLAY (2) *****************************"
-    - ansible-playbook --inventory-file hosts tests/playbook.yml --connection=local  -vvvv
+    - ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local  -vvvv
 
     # 3rd:  Make sure our playbook is idempotent
     - echo "***************************** Idempotence test (3) *****************************"
     - >
-      ansible-playbook --inventory-file hosts tests/playbook.yml --connection=local -vvvv | tee ansible_output
+      ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local -vvvv | tee ansible_output
       | grep -q 'changed=0.*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
