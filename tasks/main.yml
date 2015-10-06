@@ -29,7 +29,6 @@
 
 - name: Install Maven installation directory
   tags: maven
-  become: yes
   file:
     state=directory
     owner=0
@@ -39,7 +38,6 @@
 
 - name: Install Maven
   tags: maven
-  become: yes
   unarchive:
     src={{ util_persistent_data_path_remote }}/{{ maven_redis_filename }}
     dest={{ maven_install_dir }}
@@ -48,7 +46,6 @@
 
 - name: Install Maven bin directory
   tags: maven
-  become: yes
   file:
     state=directory
     owner=0
@@ -58,7 +55,6 @@
 
 - name: Install Maven binary
   tags: maven
-  become: yes
   file:
     state=link
     force=true
@@ -67,7 +63,6 @@
 
 - name: Install Ansible facts.d directory
   tags: maven
-  become: yes
   file:
     state=directory
     dest=/etc/ansible/facts.d
