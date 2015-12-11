@@ -23,6 +23,7 @@ None.
 
 This role sets persistent local facts for other roles to use via
 
+* facts.d ``ansible_local.maven.general.maven_version``
 * facts.d ``ansible_local.maven.general.maven_home``
 
 ## Dependencies
