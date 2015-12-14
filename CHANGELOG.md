@@ -1,3 +1,15 @@
+# 0.8.0
+
+Marc Rohlfs (1):
+
+* Add Maven version to facts.
+
+Mark Kusch (3):
+
+* Update maven to 3.3.9 (thx to ludovicc)
+* Add JAVA\_HOME when testing the role
+* Update documentation for new defaults and contributors
+
 # 0.7.0
 
 Marc Rohlfs (1):

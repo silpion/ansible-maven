@@ -14,15 +14,16 @@ None.
 
 ## Role Variables
 
-* ``maven_version``: Maven version to install (default: ``3.2.3``)
+* ``maven_version``: Maven version to install (default: ``3.3.9``)
 * ``maven_mirror``: Maven mirror to download Maven from (default: ``http://archive.apache.org/dist/maven/binaries/``)
 * ``maven_install_dir``: Base installation directory for any Maven distribution (default: ``/opt/maven``)
-* ``maven_redis_sha256sum``: SHA256 sum for the downloaded Maven redistributable package (default: ``bf3f04aadee3a67158aebdfb0b4cb022063329d459d10fd6b4b02223e10aa8ed``)
+* ``maven_redis_sha256sum``: SHA256 sum for the downloaded Maven redistributable package (default: ``6e3e9c949ab4695a204f74038717aa7b2689b1be94875899ac1b3fe42800ff82``)
 
 ## Role facts
 
 This role sets persistent local facts for other roles to use via
 
+* facts.d ``ansible_local.maven.general.maven_version``
 * facts.d ``ansible_local.maven.general.maven_home``
 
 ## Dependencies
@@ -77,6 +78,11 @@ Ruby with rake and bundler available.
 ## Author information
 
 Mark Kusch @mark.kusch silpion.de
+
+
+### Contributors
+
+* [ludovicc](https://github.com/ludovicc)
 
 
 <!-- vim: set ts=4 sw=4 et nofen: -->
