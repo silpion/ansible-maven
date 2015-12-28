@@ -44,6 +44,7 @@
     dest={{ maven_install_dir }}
     copy=false
     creates={{ maven_install_dir }}/apache-maven-{{ maven_version }}
+  sudo: yes
 
 - name: Install Maven bin directory
   tags: maven
@@ -53,6 +54,7 @@
     group=0
     mode=0755
     dest={{ maven_bin_path }}
+  sudo: yes
 
 - name: Install Maven binary
   tags: maven
@@ -61,6 +63,7 @@
     force=true
     src={{ maven_install_dir }}/apache-maven-{{ maven_version }}/bin/mvn
     dest={{ maven_bin_path }}/mvn
+  sudo: yes
 
 - name: Install Ansible facts.d directory
   tags: maven
