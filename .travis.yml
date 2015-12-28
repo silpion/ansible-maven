@@ -28,6 +28,8 @@ script:
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
     - sudo ansible --version
 
+    # 0: install requirement
+    - echo "\e[31m######***************************** REQUIREMENT (0) *****************************\e[0m"
     - ansible-galaxy install --role-file requirements.yml
 
     # 1st: check syntax

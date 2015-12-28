@@ -35,6 +35,7 @@
     group=0
     mode=0755
     dest={{ maven_install_dir }}
+  sudo: yes
 
 - name: Install Maven
   tags: maven
