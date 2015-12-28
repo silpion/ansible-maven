@@ -4,6 +4,10 @@ language: python
 python: "2.7"
 env:
   - ANSIBLE_VERSION=1.9.2
+cache: bundler
+#sudo: false
+sudo: required
+dist: trusty
 before_install:
  - sudo apt-get update --assume-yes -qq
  - sudo apt-get install --assume-yes -qq python-apt python-pycurl
@@ -22,7 +26,7 @@ script:
     #- cd tests
 
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
-    - ansible --version
+    - sudo ansible --version
 
     # 1st: check syntax
     - echo "\e[31m######***************************** SYNTAX CHECK (1) *****************************\e[0m"
