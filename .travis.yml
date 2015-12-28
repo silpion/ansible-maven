@@ -28,6 +28,8 @@ script:
     - echo -e "\e[31m######AnsibleVersion#######\e[0m"
     - sudo ansible --version
 
+    - ansible-galaxy install --role-file requirements.yml
+
     # 1st: check syntax
     - echo "\e[31m######***************************** SYNTAX CHECK (1) *****************************\e[0m"
     - ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local --syntax-check
