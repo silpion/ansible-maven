@@ -1,7 +1,5 @@
 ---
-# Main list of tasks to be executed.
-#
-#   Fail the play if it runs on an unsupported platform.
+# Fail the play if it runs on an unsupported platform.
 - name: Assert platform is supported
   tags: maven
   assert:
@@ -30,67 +28,67 @@
 
 - name: Install Maven installation directory
   tags: maven
-  become: yes
+  become: true
   file:
-    state=directory
-    owner=0
-    group=0
-    mode=0755
-    dest={{ maven_install_dir }}
+    state: directory
+    owner: 0
+    group: 0
+    mode: 0755
+    dest: "{{ maven_install_dir }}"
 
 
 - name: Install Maven
   tags: maven
-  become: yes
+  become: true
   unarchive:
-    src={{ util_persistent_data_path_remote }}/{{ maven_redis_filename }}
-    dest={{ maven_install_dir }}
-    copy=false
-    creates={{ maven_install_dir }}/apache-maven-{{ maven_version }}
+    src: "{{ util_persistent_data_path_remote }}/{{ maven_redis_filename }}"
+    dest: "{{ maven_install_dir }}"
+    copy: false
+    creates: "{{ maven_install_dir }}/apache-maven-{{ maven_version }}"
 
 
 - name: Install Maven bin directory
   tags: maven
-  become: yes
+  become: true
   file:
-    state=directory
-    owner=0
-    group=0
-    mode=0755
-    dest={{ maven_bin_path }}
+    state: directory
+    owner: 0
+    group: 0
+    mode: 0755
+    dest: "{{ maven_bin_path }}"
 
 
 - name: Install Maven binary
   tags: maven
-  become: yes
+  become: true
   file:
-    state=link
-    force=true
-    src={{ maven_install_dir }}/apache-maven-{{ maven_version }}/bin/mvn
-    dest={{ maven_bin_path }}/mvn
+    state: link
+    force: true
+    src: "{{ maven_install_dir }}/apache-maven-{{ maven_version }}/bin/mvn"
+    dest: "{{ maven_bin_path }}/mvn"
 
 
 - name: Install Ansible facts.d directory
   tags: maven
-  become: yes
+  become: true
   file:
-    state=directory
-    dest=/etc/ansible/facts.d
-    owner=0
-    group=0
-    mode=0755
+    state: directory
+    dest: /etc/ansible/facts.d
+    owner: 0
+    group: 0
+    mode: 0755
 
 - name: Install Maven facts
   tags: maven
-  sudo: yes
+  become: true
   template:
-    src=facts.j2
-    dest=/etc/ansible/facts.d/maven.fact
-    owner=0
-    group=0
-    mode=0644
+    src: facts.j2
+    dest: /etc/ansible/facts.d/maven.fact
+    owner: 0
+    group: 0
+    mode: 0644
 
 - name: Re-read facts
   tags: maven
   setup:
-    filter=ansible_local
+    filter: ansible_local
