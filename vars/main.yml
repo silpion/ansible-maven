@@ -1,4 +1,6 @@
 ---
+maven_role_version: "{{ lookup('file', role_path + '/VERSION') }}"
+
 maven_supported_platforms:
   - Archlinux
   - Debian

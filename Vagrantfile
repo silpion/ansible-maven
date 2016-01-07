@@ -5,7 +5,11 @@
 VAGRANT_API_VERSION = '2'
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
-  config.vm.box = 'ubuntu/trusty64'
+  if ENV['ANSIBLE_MAVEN_VAGRANT_BOXNAME']
+    config.vm.box = ENV['ANSIBLE_MAVEN_VAGRANT_BOXNAME']
+  else
+    config.vm.box = 'ubuntu/trusty64'
+  end
 
   config.vm.define :ansiblemaventest do |d|
 
@@ -14,11 +18,22 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
     d.vm.provision :ansible do |ansible|
       ansible.playbook = 'tests/playbook.yml'
-      ansible.tags = ENV['ANSIBLE_TAGS']
+      ansible.tags = ENV['ANSIBLE_MAVEN_VAGRANT_ANSIBLE_TAGS']
+      ansible.skip_tags = ENV['ANSIBLE_MAVEN_VAGRANT_ANSIBLE_SKIP_TAGS']
+      ansible.verbose = ENV['ANSIBLE_MAVEN_VAGRANT_ANSIBLE_VERBOSE']
+      if ENV['ANSIBLE_MAVEN_VAGRANT_ANSIBLE_CHECKMODE'] == '1'
+        ansible.raw_arguments = '--check'
+      end
       ansible.groups = {
         'vagrant' => ['ansiblemaventest']
       }
       ansible.limit = 'vagrant'
+      ansible.raw_arguments = [
+        '--diff'
+      ]
+      if ENV['ANSIBLE_MAVEN_VAGRANT_ANSIBLE_CHECKMODE'] == '1'
+        ansible.raw_arguments << '--check'
+      end
 
       ::File.directory?('.vagrant/provisioners/ansible/inventory/') do
         ansible.inventory_path = '.vagrant/provisioners/ansible/inventory/'
@@ -30,6 +45,12 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       v.customize 'pre-boot', ['modifyvm', :id, '--nictype1', 'virtio']
       v.customize [ 'modifyvm', :id, '--name', 'ansiblemaventest', '--memory', '512', '--cpus', '1' ]
     end
+
+    d.vm.provider :libvirt do |lv|
+      lv.memory = 1024
+      lv.cpus = 2
+    end
+
 
   end
 end
