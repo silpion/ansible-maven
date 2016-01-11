@@ -1,3 +1,11 @@
+# 2.0.0
+
+Mark Kusch (3):
+
+* Re-generate TDD files
+* Style guide
+* Fix utilization for v2 compatibility
+
 # 0.8.0
 
 Marc Rohlfs (1):
