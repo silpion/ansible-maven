@@ -28,17 +28,17 @@ This role sets persistent local facts for other roles to use via
 
 ## Dependencies
 
-This role depends on ``groover.util`` role. This is configured
+This role depends on ``silpion.lib`` role. This is configured
 for ``ansible-galaxy install`` in **requirements.yml**.
 
 **NOTE**: Requirements are installed as virtual user ``silpion``
-(``silpion.util``).
+(``silpion.lib``).
 
 Be sure to install required roles with
 
     ansible-galaxy install --role-file requirements.yml
 
-* [groover.util](https://github.com/silpion/ansible-util)
+* [silpion.lib](https://github.com/silpion/ansible-lib)
 
 ## Example playbook
 

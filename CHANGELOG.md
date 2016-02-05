@@ -1,3 +1,9 @@
+# 2.1.0
+Anja Siek (2):
+
+* change depencency  from ansible-util to ansible-lib
+* fix whitespace
+
 # 2.0.0
 
 Mark Kusch (3):
