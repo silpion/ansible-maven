@@ -1,4 +1,11 @@
+# 2.1.1
+
+Mark Kusch (1):
+
+* fix dependencies to silpion.lib in meta/main.yml
+
 # 2.1.0
+
 Anja Siek (2):
 
 * change depencency  from ansible-util to ansible-lib
