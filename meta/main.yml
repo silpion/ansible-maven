@@ -4,7 +4,8 @@
 #   of appearance.
 #dependencies: ['java']
 dependencies:
-  - { role: silpion.lib }
+  - src: https://github.com/silpion/ansible-lib
+    name: silpion.lib
 
 
 # https://galaxy.ansibleworks.com
