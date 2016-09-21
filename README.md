@@ -18,6 +18,8 @@ None.
 * ``maven_mirror``: Maven mirror to download Maven from (default: ``http://archive.apache.org/dist/maven/binaries/``)
 * ``maven_install_dir``: Base installation directory for any Maven distribution (default: ``/opt/maven``)
 * ``maven_redis_sha256sum``: SHA256 sum for the downloaded Maven redistributable package (default: ``6e3e9c949ab4695a204f74038717aa7b2689b1be94875899ac1b3fe42800ff82``)
+* ``maven_path_to_lib_role``: configure path to lib-role (string, default: ``{{ lib_roles_path }}``)
+
 
 ## Role facts
 
