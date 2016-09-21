@@ -13,4 +13,5 @@
         dest: /root/.bashrc
         line: "alias {{ item }}"
   roles:
+    - silpion.java
     - ansible-maven
