@@ -1,10 +1,11 @@
 ### Files to be ignored by Git ###
 
-# Ansible
+# Ruby
 Gemfile.lock
 
 # Vagrant
 /\.vagrant/
+/tests/roles/
 
 # IntelliJ IDEA
 /*\.ipr
@@ -17,9 +18,19 @@ Gemfile.lock
 /\.project
 /\.settings/
 
+# Emacs
+.*~
+
+# Python
+**/*.pyc
+
 # Mac
 **/\.DS_Store
 
 # Custom
 /temp/
 /tmp/
+envvars-vagrant
+\.*\.swp
+\.*\.swo
+\.environ
