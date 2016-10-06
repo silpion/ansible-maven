@@ -1,3 +1,17 @@
+# 2.1.2
+
+Anja Siek (4):
+
+* update generator
+* update lib includes
+* fix geturl-deprecation
+* fix tests
+
+Mark Kusch (2):
+
+* Fix (barely available) spec tests
+* Provide default value for lib\_roles\_path variable
+
 # 2.1.1
 
 Mark Kusch (1):

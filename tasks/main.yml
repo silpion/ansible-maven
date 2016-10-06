@@ -8,7 +8,7 @@
 
 - name: Load version vars
   tags: maven
-  include: ../../silpion.lib/tasks/version-specific-vars.yml
+  include: "{{ maven_path_to_lib_role }}/silpion.lib/tasks/version-specific-vars.yml"
   vars:
     version: "{{ maven_version }}"
 
@@ -16,22 +16,24 @@
   tags: maven
   assert:
     that:
-      - maven_redis_sha256sum not in (None, "")
+      - maven_redis_checksum not in (None, "")
 
 - name: Include data persintency
   tags: maven
-  include: ../../silpion.lib/tasks/datapersistency.yml
+  include: "{{ maven_path_to_lib_role }}/silpion.lib/tasks/datapersistency.yml"
 
 - name: Download Maven
   tags: maven
-  include: ../../silpion.lib/tasks/get_url.yml
+  include: "{{ maven_path_to_lib_role }}/silpion.lib/tasks/get_url.yml"
   vars:
     url: "{{ maven_mirror }}/{{ maven_redis_filename }}"
     filename: "{{ maven_redis_filename }}"
+    checksum: "{{ maven_redis_checksum }}"
+
 
 - name: Upload installation archive
   tags: maven
-  include: ../../silpion.lib/tasks/copy.yml
+  include: "{{ maven_path_to_lib_role }}/silpion.lib/tasks/copy.yml"
   vars:
     filename: "{{ maven_redis_filename }}"
 
