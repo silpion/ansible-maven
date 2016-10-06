@@ -38,6 +38,6 @@ describe 'Testing ansible-maven local facts' do
     its(:content) { should match /vendor = "Silpion"/ }
     its(:content) { should match /vendor_url = "http:\/\/silpion.de"/ }
     its(:content) { should match /vendor_github = "https:\/\/github.com\/silpion"/ }
-    its(:content) { should match /role_version = "0.1.0"/ }
+    its(:content) { should match /role_version = "2.1.1"/ }
   end
 end
