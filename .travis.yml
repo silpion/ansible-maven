@@ -37,16 +37,16 @@ script:
 
     # 1st: check syntax
     - echo "\e[31m######***************************** SYNTAX CHECK (1) *****************************\e[0m"
-    - sudo ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local --syntax-check
+    - sudo ansible-playbook --inventory-file tests/hosts tests/test.yml --connection=local --syntax-check
 
     # 2nd:  Make sure we run the entire playbook
     - echo "***************************** RUN PLAY (2) *****************************"
-    - sudo ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local  -vvvv
+    - sudo ansible-playbook --inventory-file tests/hosts tests/test.yml --connection=local  -vvvv
 
     # 3rd:  Make sure our playbook is idempotent
     - echo "***************************** Idempotence test (3) *****************************"
     - >
-      sudo ansible-playbook --inventory-file tests/hosts tests/playbook.yml --connection=local -vvvv | tee ansible_output
+      sudo ansible-playbook --inventory-file tests/hosts tests/test.yml --connection=local -vvvv | tee ansible_output
       | grep -q 'changed=0.*failed=0'
       && (echo 'Idempotence test: pass' && exit 0)
       || (echo 'Idempotence test: fail' && exit 1)
