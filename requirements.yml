@@ -1,3 +1,6 @@
 ---
 - src: https://github.com/silpion/ansible-lib.git
   name: silpion.lib
+
+- src: https://github.com/silpion/ansible-java.git
+  name: silpion.java
