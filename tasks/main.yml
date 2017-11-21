@@ -30,12 +30,12 @@
     filename: "{{ maven_redis_filename }}"
     checksum: "{{ maven_redis_checksum }}"
 
-
 - name: Upload installation archive
   tags: maven
   include: "{{ maven_path_to_lib_role }}/silpion.lib/tasks/copy.yml"
   vars:
     filename: "{{ maven_redis_filename }}"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Install Maven installation directory
   tags: maven

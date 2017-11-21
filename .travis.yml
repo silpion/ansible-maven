@@ -1,12 +1,64 @@
 ---
 language: python
 python: "2.7"
+env:
+  - ANSIBLE_VERSION=2.1.0.0
+cache: bundler
+cache: pip
+cache:
+  directories:
+  - $HOME/.m2
+#sudo: false
+sudo: required
+dist: trusty
 before_install:
  - sudo apt-get update --assume-yes -qq
  - sudo apt-get install --assume-yes -qq python-apt python-pycurl
 install:
- - sudo pip install ansible
+  # Install Ansible.
+  - sudo pip install ansible==$ANSIBLE_VERSION
+
+  # Add ansible.cfg to pick up roles path.
+  #- "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+  # Install dependencies.
+  #- ansible-galaxy install silpion.util
+  #- git clone https://github.com/AlbanAndrieu/ansible-util.git silpion.util
+
 script:
- - ansible --version
- - ansible-playbook --inventory-file tests/hosts --syntax-check tests/playbook.yml
- - ansible-playbook --inventory-file tests/hosts --connection=local -vvvv tests/playbook.yml
+    #- cd tests
+
+    - echo -e "\e[31m######AnsibleVersion#######\e[0m"
+    - sudo ansible --version
+
+    # 0: install requirement
+    - echo "\e[31m######***************************** REQUIREMENT (0) *****************************\e[0m"
+    - sudo ansible-galaxy install --role-file requirements.yml
+
+    # 1st: check syntax
+    - echo "\e[31m######***************************** SYNTAX CHECK (1) *****************************\e[0m"
+    - sudo ansible-playbook --inventory-file tests/hosts tests/test.yml --connection=local --syntax-check
+
+    # 2nd:  Make sure we run the entire playbook
+    - echo "***************************** RUN PLAY (2) *****************************"
+    - sudo ansible-playbook --inventory-file tests/hosts tests/test.yml --connection=local  -vvvv
+
+    # 3rd:  Make sure our playbook is idempotent
+    - echo "***************************** Idempotence test (3) *****************************"
+    - >
+      sudo ansible-playbook --inventory-file tests/hosts tests/test.yml --connection=local -vvvv | tee ansible_output
+      | grep -q 'changed=0.*failed=0'
+      && (echo 'Idempotence test: pass' && exit 0)
+      || (echo 'Idempotence test: fail' && exit 1)
+
+after_failure:
+    - echo -e "\e[31m######IdepotanceLog#######\e[0m"
+    - sudo cat ansible_output
+    - echo -e "\e[31m######version#######\e[0m"
+    - sudo mvn --version
+    - echo -e "\e[31m######AnsibleFacts#######\e[0m"
+    - ansible -i 127.0.0.1, -m setup all -c local
+
+after_success:
+ - echo -e "\e[0;32m######Cook Success#######\e[0m"
+
